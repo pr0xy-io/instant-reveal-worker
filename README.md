@@ -39,3 +39,11 @@ This `build` command creates an additional folder `dist` which contains the comp
 ```bash
 $ pm2 start dist/index.js
 ```
+
+---
+
+### <sub>_**Disclaimer**_</sub>
+
+<sub>_pr0xy is not liable for the deployment or performance of the above code. While it is publicly available, it has not been tested or verified to work for every case, and may not work specifically for your project. If you'd like a custom instance launched please contact [team@pr0xy.io](mailto:team@pr0xy.io) for more information._</sub>
+
+Would you like to show your support or really like this repo? Donate to [pr0xy.eth](https://etherscan.io/address/0x25B3573614E35550346158b99b89b254F1F560Ca).
