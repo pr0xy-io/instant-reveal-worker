@@ -11,7 +11,7 @@ A worker that listens for token distribution (mints, airdrops, etc.) through a d
 
 The `Instant Reveal Server` requires a number of environment variables, assuming you're utilizing Google Cloud:
 
-```txt
+```env
 ADDRESS_TO_WATCH=           the ethereum address to watch for newly minted tokens
 ETHEREUM_NETWORK=           the ethereum network, i.e. eth-mainnet | eth-rinkeby
 
