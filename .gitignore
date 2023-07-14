@@ -1,0 +1,19 @@
+# project files
+node_modules
+
+# metadata folders for upload
+metadata/*.json
+prereveal/*.json
+
+# api secrets and configuration
+.env*
+*.config.js
+
+# google cloud keys for uploading and logging
+keys.json
+
+# build files
+dist
+
+# abi for the contract
+abi.json
