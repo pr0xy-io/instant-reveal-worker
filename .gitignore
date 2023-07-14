@@ -5,6 +5,15 @@ node_modules
 metadata/*.json
 prereveal/*.json
 
+# yarn v3 state files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # api secrets and configuration
 .env*
 *.config.js
