@@ -1,8 +1,6 @@
 import { Storage } from "@google-cloud/storage";
+import logger from "../services/logger";
 import path from "path";
-
-require("../utils/logging").default();
-require("dotenv").config();
 
 const subfolder = process.env.NODE_ENV === "production" ? "metadata" : "test";
 const directory = `${process.env.GOOGLE_CLOUD_PROJECT_SLUG}/${subfolder}`;
@@ -13,20 +11,21 @@ const storage = new Storage({
   projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
 });
 
-console.log(`Writing metadata to Google Cloud Storage Directory: ${directory}`);
+logger.info(`Writing metadata to Google Cloud Storage Directory: ${directory}`);
 
 /**
  * @title Upload
- * @description Takes a token ID, `i`, and transfers the corresponding metadata file from the local
- * system to Google Cloud.
+ * @description Takes a token ID, `i`, and transfers the corresponding metadata
+ * file from the local system to Google Cloud.
  *
  * @param {number} id the token ID corresponding to the minted NFT
  */
 const upload = async (id: number, metadata: any) => {
   try {
-    // setting up the Google Cloud Storage Bucket and assigning metadata to the uploaded file
-    // no-store ensures we can update automatically without needing to clear the cache, while
-    // inline (and the `contentType`) ensure you can view the metadata in the browser
+    // setting up the Google Cloud Storage Bucket and assigning metadata to the
+    // uploaded file no-store ensures we can update automatically without
+    // needing to clear the cache, while inline (and the `contentType`) ensure
+    // you can view the metadata in the browser
     const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET);
     const blob = bucket.file(`${directory}/${id}`);
     const blobStream = blob.createWriteStream({
@@ -42,9 +41,9 @@ const upload = async (id: number, metadata: any) => {
     blobStream.end(Buffer.from(JSON.stringify(metadata)));
 
     const filePath = `${process.env.GOOGLE_CLOUD_URL}/${directory}/${id}`;
-    console.log(`${metadata?.name} uploaded to Google Cloud (${filePath}).`);
+    logger.info(`${metadata?.name} uploaded to Google Cloud (${filePath}).`);
   } catch (error) {
-    console.log(`Unable to upload metadata for ${id}: ${error.message}`);
+    logger.error(`Unable to upload metadata for ${id}: ${error.message}`);
   }
 };
 

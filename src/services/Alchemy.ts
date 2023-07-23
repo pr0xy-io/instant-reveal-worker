@@ -1,10 +1,8 @@
 import { initializeAlchemy, Network } from "@alch/alchemy-sdk";
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+import logger from "./logger";
 import path from "path";
 import fs from "fs";
-
-require("../utils/logging").default();
-require("dotenv").config();
 
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
@@ -18,10 +16,8 @@ const abi = JSON.parse(
 
 /**
  * @title Alchemy Class
- * @description an instance giving access to several Alchemy functions, Web3, and contract
- * interactions for the provided address
- *
- * todo: add a function to check the contract and summarize
+ * @description An instance giving access to several Alchemy functions, Web3,
+ * and contract interactions for the provided address.
  */
 class Alchemy {
   web3: any;

@@ -1,8 +1,6 @@
 import BlocknativeSdk from "bnc-sdk";
+import logger from "./logger";
 import WebSocket from "ws";
-
-require("../utils/logging").default();
-require("dotenv").config();
 
 let networkId: number;
 if (process.env.ETHEREUM_NETWORK === "eth-mainnet") {
@@ -30,14 +28,14 @@ class Blocknative {
       networkId,
       ws: WebSocket,
       onerror: (error: any) => {
-        console.log(error);
+        logger.error(error);
       },
     });
   }
 
   listen(address: string) {
     const { emitter } = this.blocknative.account(address);
-    console.log(`Listening to address ${address}`);
+    logger.info(`Listening to address ${address}`);
 
     return emitter;
   }
