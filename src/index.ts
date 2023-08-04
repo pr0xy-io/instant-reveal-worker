@@ -5,6 +5,7 @@ import sanityCheck from "./sanityCheck";
 import logger from "./services/logger";
 import "dotenv/config";
 
+// todo: we'd like to add different engines for listening to events
 const emitter = Blocknative.listen(process.env.ADDRESS_TO_WATCH);
 
 sanityCheck();
